@@ -1,0 +1,9 @@
+---
+- include: preparation.yml
+- include: motd.yml
+  when: motd_modification | default(false)
+- include: installation.yml
+- include: mosquitto.yml
+- include: systemd.yml
+- include: firewall.yml
+  when: ansible_distribution == "Fedora"

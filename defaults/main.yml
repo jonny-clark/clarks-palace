@@ -1,0 +1,21 @@
+---
+# The location of the home assistant config directory
+ha_conf_dir: /opt/home-assistant
+# The default user
+palace_user: palace
+# The default port
+ha_port: 8123
+# The MQTT port
+mqtt_port: 1883
+# modify motd
+motd_modification: false
+
+palace_version: 1.0.0
+
+mosquitto_pid_file: "/var/run/mosquitto.pid"
+mosquitto_extra_listener: 9001
+mosquitto_extra_protocol: "websockets"
+
+mosquitto_persistence: "true"
+mosquitto_persistence_location: "/var/lib/mosquitto/"
+mosquitto_log_dest_file: "/var/log/mosquitto/mosquitto.log"

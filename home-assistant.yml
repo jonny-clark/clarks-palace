@@ -1,0 +1,11 @@
+---
+- hosts: pi
+  become: true
+  vars:
+    palace_user: palace
+    ha_port: 8123
+    mqtt_port: 1883
+    ha_conf_dir: /opt/home-assistant
+
+  tasks:
+  - include: tasks/main.yml

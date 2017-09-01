@@ -1,0 +1,112 @@
+
+98fc11dbd234:
+  hide_if_away: false
+  mac: 98:FC:11:DB:D2:34
+  name: 98fc11dbd234
+  picture:
+  track: false
+  vendor: Cisco-Linksys, LLC
+
+android3f5bd1477151ac9d:
+  hide_if_away: false
+  mac: 8C:BF:A6:A8:98:A1
+  name: android-3f5bd1477151ac9d
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+android4611faac46be1d1d:
+  hide_if_away: false
+  mac: 50:C8:E5:9F:59:9F
+  name: android-4611faac46be1d1d
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+3e3159b1e430a9a6b5ebe43b063b4b38:
+  hide_if_away: false
+  mac: 54:60:9:37:BC:C4
+  name: 3e3159b1-e430-a9a6-b5eb-e43b063b4b38
+  picture:
+  track: false
+  vendor: Google, Inc.
+
+Jonny:
+  hide_if_away: false
+  mac: E0:63:E5:96:C8:A9
+  name: Jonny
+  picture:
+  track: true
+  vendor: Sony Mobile Communications AB
+
+pcusernomacbookair:
+  hide_if_away: false
+  mac: 34:36:3B:65:C2:46
+  name: PCUser-no-MacBook-Air
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+esp_d5deaa:
+  hide_if_away: false
+  mac: 5C:CF:7F:D5:DE:AA
+  name: ESP D5DEAA
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+moemisiphone:
+  hide_if_away: false
+  mac: 6C:94:F8:3:27:4
+  name: Moemis-iphone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+android3e26f1f2b21c59d8:
+  hide_if_away: false
+  mac: 0:73:E0:9F:15:66
+  name: Steph
+  picture:
+  track: true
+  vendor: Samsung Electronics Co.,Ltd
+
+android6fec2389d8c8a0a1:
+  hide_if_away: false
+  mac: E8:3A:12:AF:81:75
+  name: android-6fec2389d8c8a0a1
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+stephaniepc:
+  hide_if_away: false
+  mac: 70:1A:4:54:53:24
+  name: Stephanie-PC
+  picture:
+  track: false
+  vendor: Liteon Technology Corporation
+
+esp_103281:
+  hide_if_away: false
+  mac: 5C:CF:7F:10:32:81
+  name: ESP 103281
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+android:
+  hide_if_away: false
+  mac: CC:3A:61:69:47:4F
+  name: Android
+  picture:
+  track: false
+  vendor: SAMSUNG ELECTRO MECHANICS CO., LTD.
+
+recovery:
+  hide_if_away: false
+  mac: B8:27:EB:BE:AA:8A
+  name: recovery
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation

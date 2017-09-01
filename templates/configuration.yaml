@@ -1,0 +1,175 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Clarks Palace
+  # Location required to calculate the time the sun rises and sets
+  latitude: -36.877830
+  longitude: 174.759437
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 100
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Pacific/Auckland
+  customize:
+    binary_sensor.flic_80e4da719285:
+      friendly_name: Black Flic
+    binary_sensor.flic_80e4da718a99:
+      friendly_name: Yellow Flic
+
+# Show links to resources in log and frontend
+# introduction:
+
+zone:
+    name: pukekohe
+    latitude: -37.214007
+    longitude: 174.900789
+    radius: 300
+    icon: mdi:city
+
+# Enables the frontend
+frontend:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  # api_password: badgermushroomsnake
+  # Uncomment this if you are using SSL or running in Docker etc
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+    platform: google
+
+# Example configuration.yaml entry
+media_player:
+    - platform: cast
+
+mqtt:
+  broker: 127.0.0.1
+  port: 1883
+  client_id: home-assistant
+  keepalive: 60
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+    qos: 1
+    retain: true
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+    qos: 1
+    retain: true
+
+cover:
+    - platform: mqtt
+      name: "Blind Toggle"
+      command_topic: "blind"
+      payload_open: "OPEN"
+      payload_close: "CLOSE"
+      payload_stop: "STOP"
+      state_topic: "state"
+      state_open: "Open"
+      state_closed: "Closed"
+      optimistic: false
+      retain: true
+
+device_tracker:
+    - platform: nmap_tracker
+      track_new_devices: no
+      hosts: 192.168.1.1/24
+
+binary_sensor:
+    - platform: flic
+
+automation:
+  - alias: Toggle blind up if flic is clicked once
+    hide_entity: True
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da719285
+        click_type: single
+    action:
+      entity_id: cover.blind_toggle
+      service: cover.open_cover
+  - alias: Toggle blinds if flic is clicked twice
+    hide_entity: True
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da719285
+        click_type: double
+    action:
+      entity_id: cover.blind_toggle
+      service: cover.close_cover
+  - alias: Toggle blinds if flic is held down
+    hide_entity: True
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da719285
+        click_type: hold
+    action:
+      entity_id: cover.blind_toggle
+      service: cover.stop_cover
+
+sensor:
+  - platform: darksky
+    api_key: c5a3d5bf0c1a39564dabf3ddb076a985
+    name: Weather
+    monitored_conditions:
+      - temperature
+      - temperature_max
+      - temperature_min
+      - hourly_summary
+  - platform: time_date
+    display_options: 'date_time'
+  - platform: google_travel_time
+    api_key: 'AIzaSyC9G24K0RCoYdj6QXNIP2TUaWiVJu-OtUM'
+    name: 'Phone to Home'
+    origin: device_tracker.jonny
+    destination: zone.home
+  - platform: google_travel_time
+    api_key: 'AIzaSyC9G24K0RCoYdj6QXNIP2TUaWiVJu-OtUM'
+    name: 'Home to Pukekohe'
+    origin: zone.home
+    destination: pukekohe
+  - platform: fitbit
+    monitored_resources:
+      - "activities/tracker/steps"
+
+group:
+    weather:
+        name: Weather
+        view: no
+        entities:
+          - sensor.weather_hourly_summary
+          - sensor.weather_temperature
+          - sensor.weather_daily_low_temperature
+          - sensor.weather_daily_high_temperature
+          - sun.sun
+    date:
+        name: ''
+        view: no
+        entities:
+          - sensor.date__time

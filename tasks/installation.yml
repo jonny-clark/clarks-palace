@@ -1,0 +1,22 @@
+---
+- name: install required python modules (pre-install)
+  pip: name={{ item }} extra_args="--upgrade" executable=pip3
+  with_items:
+  - colorlog
+  - sqlalchemy
+
+- name: install defined version of Home Assistant
+  pip: name=homeassistant version={{ ha_version }} executable=pip3
+  when: ha_version is defined
+
+- name: install latest version of Home Assistant
+  pip: name=homeassistant extra_args="--upgrade" executable=pip3
+  when: ha_version is undefined
+
+- name: copy configuration file
+  template:
+    src: configuration.yaml
+    dest: "{{ ha_conf_dir }}"
+    owner: "{{ palace_user }}"
+    group: "{{ palace_user }}"
+    mode: 0644
