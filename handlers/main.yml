@@ -1,11 +1,15 @@
 ---
-- name: restart home-assistant
+- name: Restart HA
   service:
-    name: home-assistant
-    state: restarted
+    name: 'home-assistant'
+    state: 'restarted'
 
 - name: Restart Mosquitto
   service:
-    name: mosquitto
-    state: restarted
-  become: true
+    name: 'mosquitto'
+    state: 'restarted'
+
+- name: Reload Mosquitto
+  service:
+    name: 'mosquitto'
+    state: 'reloaded'

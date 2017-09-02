@@ -8,13 +8,13 @@ Requirements
 
 One requirement is to have a system with a configured instance of Ansible. This means that you have an inventory and access to the remote system via SSH with keys.
 
-1. Add the remote system to your Ansible's `hosts` (`/etc/ansible/hosts`) file to the group `[home-assistant]`.
+1. Add the remote system to the *hosts* file in the group [palace]
 2. For every system you want to manage, you need to have the master's SSH key in the *authorized_keys* file of the managed/remote system.
 
 From the management system for the user **root**:
 
 ```bash
-$ sudo ssh-copy-id -i /home/[your local user]/.ssh/id_rsa.pub root@[IP address of remote system]
+$ sudo ssh-copy-id -i /home/[your local user]/.ssh/id_rsa.pub pi@[IP address of remote system]
 ```
 
 While checking if you are able to login the remote system without password, you should check if Python and the DNF Python binding are available. If not, install them to save some time later.
@@ -27,8 +27,8 @@ $ sudo dnf -y install python python-dnf
 3. Perform a first check if Ansible works. You need to use the user `root`:
 
 ```bash
-$ ansible palace -m ping -u root -b
-192.168.1.2 | success >> {
+$ ansible -i hosts palace -m ping -u pi -b
+192.168.1.117 | success >> {
     "changed": false,
     "ping": "pong"
 }

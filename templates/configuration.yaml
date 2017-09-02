@@ -10,6 +10,7 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Pacific/Auckland
+
   customize:
     binary_sensor.flic_80e4da719285:
       friendly_name: Black Flic
@@ -63,7 +64,7 @@ media_player:
 
 mqtt:
   broker: 127.0.0.1
-  port: 1883
+  port: {{mqtt_port}}
   client_id: home-assistant
   keepalive: 60
   birth_message:

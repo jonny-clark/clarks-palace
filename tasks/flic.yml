@@ -1,0 +1,11 @@
+---
+- name: copy flic executable
+  copy:
+    src: templates/flicd
+    dest: /usr/local/bin/flicd
+    owner: "{{ palace_user }}"
+    group: "{{ palace_user }}"
+    mode: 0755
+
+- name: set permissions to execute flic
+  shell: setcap cap_net_admin=ep /usr/local/bin/flicd

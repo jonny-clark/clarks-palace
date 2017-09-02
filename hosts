@@ -1,2 +1,2 @@
-[pi]
-192.168.1.117
+[palace]
+192.168.1.117 ansible_connection=ssh ansible_ssh_user=pi

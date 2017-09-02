@@ -5,18 +5,21 @@
   - colorlog
   - sqlalchemy
 
-- name: install defined version of Home Assistant
-  pip: name=homeassistant version={{ ha_version }} executable=pip3
-  when: ha_version is defined
+- name: create directories
+  file: path={{ ha_conf_dir }} state=directory mode=02775 owner={{ palace_user }} group={{ palace_user }}
 
 - name: install latest version of Home Assistant
   pip: name=homeassistant extra_args="--upgrade" executable=pip3
-  when: ha_version is undefined
 
-- name: copy configuration file
+- name: copy configuration files
   template:
-    src: configuration.yaml
+    src: "{{ item }}"
     dest: "{{ ha_conf_dir }}"
     owner: "{{ palace_user }}"
     group: "{{ palace_user }}"
     mode: 0644
+  with_items:
+    - configuration.yaml
+    - fitbit.conf
+    - known_devices.yaml
+  notify: Restart HA

@@ -2,7 +2,10 @@
 - shell: which hass
   register: hass_command
 
-- name: install Fedora systemd unit file
+- shell: which flicd
+  register: flic_command
+
+- name: install systemd unit file for ha
   template:
     src: home-assistant.service.j2
     dest: "/etc/systemd/system/home-assistant.service"
@@ -13,6 +16,21 @@
 - name: start home-assistant
   systemd:
     name: home-assistant
+    daemon_reload: yes
+    enabled: yes
+    state: started
+
+- name: install systemd unit file for flic
+  template:
+    src: flic.service.j2
+    dest: "/etc/systemd/system/flic.service"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: start flic
+  systemd:
+    name: flic
     daemon_reload: yes
     enabled: yes
     state: started
